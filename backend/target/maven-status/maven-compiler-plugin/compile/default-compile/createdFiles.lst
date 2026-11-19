@@ -24,6 +24,7 @@ com\stockflow\repository\UserRepository.class
 com\stockflow\security\JwtService.class
 com\stockflow\config\SecurityConfig.class
 com\stockflow\controller\DashboardController.class
+com\stockflow\controller\HealthController.class
 com\stockflow\repository\ProductRepository.class
 com\stockflow\dto\AuthResponse.class
 com\stockflow\repository\OrganizationRepository.class

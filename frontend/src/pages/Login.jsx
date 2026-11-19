@@ -46,7 +46,7 @@ export default function Login() {
             </div>
             <span>StockFlow</span>
           </div>
-          <h2 className="auth-title">Sign in to your account</h2>
+          <h2 className="auth-title">Welcome back</h2>
           <p className="auth-subtitle">Manage your inventory, stock levels, and store alerts</p>
         </div>
 

@@ -2,6 +2,7 @@ C:\Users\pooji\.gemini\antigravity\scratch\stockflow\backend\src\main\java\com\s
 C:\Users\pooji\.gemini\antigravity\scratch\stockflow\backend\src\main\java\com\stockflow\config\SecurityConfig.java
 C:\Users\pooji\.gemini\antigravity\scratch\stockflow\backend\src\main\java\com\stockflow\controller\AuthController.java
 C:\Users\pooji\.gemini\antigravity\scratch\stockflow\backend\src\main\java\com\stockflow\controller\DashboardController.java
+C:\Users\pooji\.gemini\antigravity\scratch\stockflow\backend\src\main\java\com\stockflow\controller\HealthController.java
 C:\Users\pooji\.gemini\antigravity\scratch\stockflow\backend\src\main\java\com\stockflow\controller\ProductController.java
 C:\Users\pooji\.gemini\antigravity\scratch\stockflow\backend\src\main\java\com\stockflow\controller\SettingsController.java
 C:\Users\pooji\.gemini\antigravity\scratch\stockflow\backend\src\main\java\com\stockflow\dto\AuthResponse.java

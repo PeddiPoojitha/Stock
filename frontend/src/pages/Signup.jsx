@@ -91,7 +91,7 @@ export default function Signup() {
             </div>
             <span>StockFlow</span>
           </div>
-          <h2 className="auth-title">Create your store account</h2>
+          <h2 className="auth-title">Start your StockFlow workspace</h2>
           <p className="auth-subtitle">Set up your business tenant to start managing inventory</p>
         </div>
 

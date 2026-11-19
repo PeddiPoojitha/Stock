@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Layers, AlertCircle, ArrowRight } from 'lucide-react';
+import { AlertCircle, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import AuthShowcase from '../components/AuthShowcase';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -82,18 +83,15 @@ export default function Signup() {
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-card" style={{ maxWidth: '480px' }}>
-        <div className="auth-header">
-          <div className="auth-brand">
-            <div className="brand-icon-wrap">
-              <Layers size={18} />
-            </div>
-            <span>StockFlow</span>
+    <div className="auth-page auth-page-signup">
+      <AuthShowcase />
+      <main className="auth-main auth-main-signup">
+        <div className="auth-card auth-card-signup">
+          <div className="auth-header">
+            <span className="auth-form-eyebrow">A FRESH START FOR YOUR BUSINESS</span>
+            <h2 className="auth-title">Start your StockFlow workspace</h2>
+            <p className="auth-subtitle">Set up your business tenant to start managing inventory</p>
           </div>
-          <h2 className="auth-title">Start your StockFlow workspace</h2>
-          <p className="auth-subtitle">Set up your business tenant to start managing inventory</p>
-        </div>
 
         {generalError && (
           <div className="auth-alert">
@@ -190,24 +188,20 @@ export default function Signup() {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{ width: '100%', padding: '0.75rem', marginTop: '0.5rem' }}
-            disabled={loading}
-          >
-            {loading ? 'Creating Organization...' : 'Create Organization'}
-            {!loading && <ArrowRight size={16} />}
-          </button>
-        </form>
+            <button type="submit" className="btn btn-primary auth-submit" disabled={loading}>
+              {loading ? 'Creating Organization...' : 'Create Organization'}
+              {!loading && <ArrowRight size={16} />}
+            </button>
+          </form>
 
-        <div className="auth-footer">
-          Already have an account?{' '}
-          <Link to="/login" className="auth-link">
-            Sign in
-          </Link>
+          <div className="auth-footer">
+            Already have an account?{' '}
+            <Link to="/login" className="auth-link">
+              Sign in
+            </Link>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

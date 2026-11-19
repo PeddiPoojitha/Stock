@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Layers, AlertCircle, ArrowRight } from 'lucide-react';
+import { AlertCircle, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import AuthShowcase from '../components/AuthShowcase';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -38,74 +39,67 @@ export default function Login() {
 
   return (
     <div className="auth-page">
-      <div className="auth-card">
-        <div className="auth-header">
-          <div className="auth-brand">
-            <div className="brand-icon-wrap">
-              <Layers size={18} />
+      <AuthShowcase />
+      <main className="auth-main">
+        <div className="auth-card">
+          <div className="auth-header">
+            <span className="auth-form-eyebrow">YOUR WORKSPACE IS READY</span>
+            <h2 className="auth-title">Welcome back</h2>
+            <p className="auth-subtitle">Sign in to pick up right where you left off.</p>
+          </div>
+
+          {error && (
+            <div className="auth-alert">
+              <AlertCircle size={18} style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>{error}</span>
             </div>
-            <span>StockFlow</span>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label className="form-label" htmlFor="email">
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                className="form-input"
+                placeholder="name@business.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" htmlFor="password">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                className="form-input"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary auth-submit" disabled={loading}>
+              {loading ? 'Signing in...' : 'Sign In'}
+              {!loading && <ArrowRight size={16} />}
+            </button>
+          </form>
+
+          <div className="auth-footer">
+            Don&apos;t have an account?{' '}
+            <Link to="/signup" className="auth-link">
+              Create an organization
+            </Link>
           </div>
-          <h2 className="auth-title">Welcome back</h2>
-          <p className="auth-subtitle">Manage your inventory, stock levels, and store alerts</p>
         </div>
-
-        {error && (
-          <div className="auth-alert">
-            <AlertCircle size={18} style={{ flexShrink: 0, marginTop: '2px' }} />
-            <span>{error}</span>
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="form-label" htmlFor="email">
-              Email Address
-            </label>
-            <input
-              id="email"
-              type="email"
-              className="form-input"
-              placeholder="name@business.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label className="form-label" htmlFor="password">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              className="form-input"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{ width: '100%', padding: '0.75rem', marginTop: '0.5rem' }}
-            disabled={loading}
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
-            {!loading && <ArrowRight size={16} />}
-          </button>
-        </form>
-
-        <div className="auth-footer">
-          Don't have an account?{' '}
-          <Link to="/signup" className="auth-link">
-            Create an organization
-          </Link>
-        </div>
-      </div>
+      </main>
     </div>
   );
 }

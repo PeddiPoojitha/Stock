@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Package, Boxes, AlertTriangle, DollarSign, RefreshCw, PlusCircle, CheckCircle2 } from 'lucide-react';
+import { Package, Boxes, AlertTriangle, DollarSign, RefreshCw, PlusCircle, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import dashboardService from '../services/dashboardService';
 import productService from '../services/productService';
@@ -59,31 +59,58 @@ export default function Dashboard() {
 
   return (
     <div className="page-container">
-      <div className="page-header-row dashboard-header">
-        <div>
-          <h1 className="dashboard-title">Inventory Dashboard</h1>
-          <p className="dashboard-subtitle">
-            Welcome, <strong>{user?.fullName}</strong> &bull; Showing live analytics for{' '}
-            <strong>{data?.organizationName || user?.organizationName}</strong>
+      <section className="dashboard-hero">
+        <div className="dashboard-hero-copy">
+          <div className="dashboard-eyebrow">
+            <span className="live-indicator" />
+            INVENTORY OVERVIEW
+          </div>
+          <h1 className="dashboard-hero-title">
+            Take stock.<br />
+            <span>Stay ahead.</span>
+          </h1>
+          <p className="dashboard-hero-subtitle">
+            Welcome back, <strong>{user?.fullName?.split(' ')[0] || 'there'}</strong>. Here&apos;s how{' '}
+            <strong>{data?.organizationName || user?.organizationName}</strong> is doing today.
           </p>
+          <div className="dashboard-hero-actions">
+            <button
+              onClick={() => fetchDashboardData(true)}
+              className="btn btn-hero-secondary"
+              disabled={refreshing}
+              title="Refresh statistics"
+            >
+              <RefreshCw size={16} className={refreshing ? 'spinner' : ''} />
+              <span>Refresh</span>
+            </button>
+            <Link to="/products/new" className="btn btn-hero-primary">
+              <PlusCircle size={16} />
+              <span>Add Product</span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <button
-            onClick={() => fetchDashboardData(true)}
-            className="btn btn-secondary"
-            disabled={refreshing}
-            title="Refresh statistics"
-          >
-            <RefreshCw size={16} className={refreshing ? 'spinner' : ''} />
-            <span>Refresh</span>
-          </button>
-          <Link to="/products/new" className="btn btn-primary">
-            <PlusCircle size={16} />
-            <span>Add Product</span>
-          </Link>
+        <div className="dashboard-hero-art" aria-hidden="true">
+          <div className="hero-orbit hero-orbit-one" />
+          <div className="hero-orbit hero-orbit-two" />
+          <div className="hero-stock-card">
+            <div className="hero-stock-topline">
+              <span className="hero-stock-icon"><Boxes size={17} /></span>
+              <span>LIVE INVENTORY</span>
+              <span className="hero-live-tag"><span /> LIVE</span>
+            </div>
+            <div className="hero-stock-value">{(data?.totalStockQuantity || 0).toLocaleString()}</div>
+            <div className="hero-stock-caption">units currently tracked</div>
+            <div className="hero-stock-divider" />
+            <div className="hero-stock-footer">
+              <span>PRODUCTS IN CATALOG</span>
+              <strong>{data?.totalProducts || 0}</strong>
+            </div>
+          </div>
+          <div className="hero-floating-cube"><Package size={23} /></div>
         </div>
-      </div>
+      </section>
 
       {/* Summary Metrics Grid */}
       <div className="metrics-grid">
